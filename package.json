@@ -1,4 +1,6 @@
 {
+  "name": "expo-cypress-examples",
+  "description": "Testing Expo React Native app with multiple tabs using Cypress",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",

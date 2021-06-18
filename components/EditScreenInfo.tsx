@@ -1,10 +1,21 @@
-import * as WebBrowser from 'expo-web-browser';
+import * as _WebBrowser from 'expo-web-browser';
 import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 
 import Colors from '../constants/Colors';
 import { MonoText } from './StyledText';
 import { Text, View } from './Themed';
+
+// wrapper that allows stubbing methods
+// unlike the expo-web-browser import
+const WebBrowser = { ..._WebBrowser }
+
+// @ts-ignore
+if (window.Cypress) {
+  // application is running inside Cypress test
+  // @ts-ignore
+  window.WebBrowser = WebBrowser
+}
 
 export default function EditScreenInfo({ path }: { path: string }) {
   return (

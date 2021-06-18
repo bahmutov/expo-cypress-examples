@@ -34,4 +34,15 @@ describe('Expo app tabs', () => {
     const url = 'https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet'
     cy.get('@open').should('have.been.calledOnceWith', url, '_blank')
   })
+
+  it('calls openBrowserAsync', () => {
+    cy.visit('/')
+      .its('WebBrowser').then(WebBrowser => {
+        console.log(Object.getOwnPropertyDescriptor(WebBrowser, 'openBrowserAsync'))
+        cy.stub(WebBrowser, 'openBrowserAsync').as('open')
+      })
+    cy.contains('[data-testid=help]', 'Tap here').click()
+    const url = 'https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet'
+    cy.get('@open').should('have.been.calledOnceWith', url)
+  })
 })

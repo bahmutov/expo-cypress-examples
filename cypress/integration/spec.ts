@@ -15,7 +15,7 @@ describe('Expo app tabs', () => {
       .should('have.text', 'Tab Two Title')
   })
 
-  it.only('goes to not found tab', () => {
+  it('goes to not found tab', () => {
     cy.visit('/two')
     cy.location('pathname').should('equal', '/two')
 

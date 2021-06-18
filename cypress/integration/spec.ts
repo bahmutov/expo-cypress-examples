@@ -24,4 +24,14 @@ describe('Expo app tabs', () => {
     cy.contains('Go to home').click()
     cy.location('pathname').should('equal', '/one')
   })
+
+  it('opens the help link in the browser', () => {
+    cy.visit('/')
+      .then(win => {
+        cy.stub(win, 'open').as('open')
+      })
+    cy.contains('[data-testid=help]', 'Tap here').click()
+    const url = 'https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet'
+    cy.get('@open').should('have.been.calledOnceWith', url, '_blank')
+  })
 })
